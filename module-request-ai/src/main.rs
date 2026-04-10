@@ -27,7 +27,8 @@ i18n!("i18n", fallback = "en", minify_key = true);
 
 #[tokio::main]
 async fn main() -> Result<(), std::io::Error> {
-	if std::env::var("_PR_AI_DISABLE").is_ok() {
+	// AI suggestions are opt-in: set _PR_AI_ENABLE=1 to activate
+	if std::env::var("_PR_AI_ENABLE").is_err() {
 		return Ok(());
 	}
 	let mode = std::env::var("_PR_MODE");
